@@ -1,0 +1,22 @@
+{
+  "name": "action-test",
+  "version": "1.0.0",
+  "description": "Github action test",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lja1018/action-test.git"
+  },
+  "author": "JE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lja1018/action-test/issues"
+  },
+  "homepage": "https://github.com/lja1018/action-test#readme",
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
