@@ -4,8 +4,7 @@
   "description": "Github action test",
   "main": "index.js",
   "scripts": {
-    "deploy": "gh-pages -d public",
-    "install": "npm install"
+    "deploy": "gh-pages -d public"
   },
   "repository": {
     "type": "git",
