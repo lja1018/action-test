@@ -30,6 +30,10 @@ jobs:
       - name: npm install
         run: |
           npm install --legacy-peer-deps
+      - name: Build
+        run: |
+          rm -rf ./public
+          cp index.html ./public
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
         with:
