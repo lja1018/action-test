@@ -3,15 +3,15 @@ name: brandsite deploy
 on:
   push:
     branches: [ main ]
-    
+
 jobs:
   build:
     runs-on: macos-latest
-    
+
     strategy:
       matrix:
         node-version: [ 14.x ]
-    
+
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
@@ -29,6 +29,21 @@ jobs:
       - name: npm install
         run: |
           npm install --legacy-peer-deps
-      - name: publish brandsite
-        run: |
-          npm run deploy
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: "gh-pages"
+          clean: false
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v4.4.0
+        with:
+          add: '.'
+          ref: "gh-pages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push commit
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "gh-pages"
+          force: true
