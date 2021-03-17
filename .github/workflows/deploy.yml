@@ -1,0 +1,34 @@
+name: brandsite deploy
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+    
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+      - name: npm install
+        run: |
+          npm install --legacy-peer-deps
+      - name: publish brandsite
+        run: |
+          npm run deploy
