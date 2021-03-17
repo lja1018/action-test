@@ -33,6 +33,7 @@ jobs:
       - name: Build
         run: |
           rm -rf ./public
+          mkdir public
           cp index.html ./public
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
