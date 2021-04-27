@@ -9,4 +9,4 @@ jobs:
         uses: actions/checkout@v2
       - name: echo ref
         run: |
-          echo {{ github.ref }}
+          echo ${{ github.ref }}
