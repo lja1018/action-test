@@ -1,0 +1,12 @@
+name: test
+on: pull_request
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: echo ref
+        run: |
+          echo {{ github.ref }}
